@@ -1,0 +1,41 @@
+<!--  -->
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+img {
+    width 50%;
+}
+
+article {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+body {
+    font-family: 'Indie Flower', cursive;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+h1 {
+    color: #504846;
+    font-size: 40px;
+    margin-top: 20 px;
+}
+
+h2 {
+    color: #d76161;
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 18px;
+    color: #5f5f5f;    
+}
