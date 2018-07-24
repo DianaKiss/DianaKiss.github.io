@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
+
 <body>
   <header>
     <menu>
-        <div clas="dropdown"><a href="#">This</a></div>
-        <div class="dropdown">Is
-              <div class="dropdownContent">Cool</div>
-              <div class="dropdownContent">Isn't it?</div>
-        </div>
-        <div clas="dropdown"><a href="#">Just</a></div>
-        <div clas="dropdown"><a href="#">A</a></div>
-        <div clas="dropdown"><a href="#">Menu</a></div>
-        <div clas="dropdown"><a href="#">To</a></div>
-        <div clas="dropdown"><a href="#">Try</a></div>
+      <div clas="dropdown">
+        <a href="#">This</a>
+      </div>
+      <div class="dropdown">Is
+        <div class="dropdownContent">Cool</div>
+        <div class="dropdownContent">Isn't it?</div>
+      </div>
+      <div clas="dropdown">
+        <a href="#">Just</a>
+      </div>
+      <div clas="dropdown">
+        <a href="#">A</a>
+      </div>
+      <div clas="dropdown">
+        <a href="#">Menu</a>
+      </div>
+      <div clas="dropdown">
+        <a href="#">To</a>
+      </div>
+      <div clas="dropdown">
+        <a href="#">Try</a>
+      </div>
     </menu>
   </header>
 
@@ -27,13 +41,29 @@
     <form class="numberAdder">
       <label>
         <p>How many numbers would you like to enter?</p>
-        <input type="number"> 
+        <input type="number" name="countNumber" id="countNumber">
       </label>
       <button>Submit</button>
     </form>
+
+    <!-- <div class="defineNumbersForm">
+      <form class="defineNumbers">
+        <label>
+          <p>Please enter 'countNumber' numbers one-by-one here!</p>
+          <input type="number" name="countNumber" id="countNumber"> 
+        </label>
+        <button>Submit</button>
+    </form>
+
+    </div> -->
+
+    <div class="answer"></div>
+
+
   </article>
 
-  
+
   <script src="script.js"></script>
 </body>
+
 </html>
