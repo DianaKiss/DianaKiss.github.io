@@ -1,6 +1,6 @@
 'use strict';
 
-import numberAdder from (numberAdder);
+let numberAdder = require('./numberAdder');
 
 document.querySelector('.numberAdder').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -24,9 +24,9 @@ document.querySelector('.numberAdder').addEventListener('submit', (e) => {
 </form>`;
 });
 
-let numbersFromForm = [];
+// let numbersFromForm = [];
 
-numberAdder(numbersFromForm);
+// numberAdder(numbersFromForm);
 
 
 
