@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/DianaKiss/DianaKiss.github.io#readme",
   "dependencies": {
-    "tape": "^4.9.1"
+    "@types/node": "^10.12.10",
+    "tape": "^4.9.1",
+    "webpack": "^4.26.0"
   }
 }
