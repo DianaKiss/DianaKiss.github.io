@@ -3,19 +3,19 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-let map = []; 
-let openList = []; 
-let closedList = []; 
-let start = { x: 1, y: 1, f: 0, g: 0 };
-let goal = { x: 8, y: 8, f: 0, g: 0 };
-let mw = 10;
-let mh = 10; 
-let neighbours = []; 
-let pathArray = [];
+let map: number[] = []; 
+let openList: number[] = []; 
+let closedList: number[] = []; 
+let start: { x: number; y: number; f: number, g: number} = { x: 1, y: 1, f: 0, g: 0 };
+let goal: { x: number; y: number; f: number, g: number} = { x: 8, y: 8, f: 0, g: 0 };
+let mw: number = 10;
+let mh: number = 10; 
+let neighbours: object[] = []; 
+let pathArray: object[] = [];
 
-function findNeighbour(anyArray, n) {
-  let a;
-  for (let i = 0; i < anyArray.length; i++) {
+function findNeighbour(anyArray, n): number {
+  let a: number;
+  for (let i: number = 0; i < anyArray.length; i++) {
     a = anyArray[i];
     if (n.x === a.x && n.y === a.y) return i;
   }
@@ -37,7 +37,7 @@ function addNeighbours(current) {
   });
 }
 
-function createPath() {
+function createPath(): void {
   pathArray = [];
   let a, b;
   a = closedList.pop();
@@ -49,7 +49,7 @@ function createPath() {
   }
 }
 
-function solveMap() {
+function solveMap(): any {
   drawMap();
   if (openList.length < 1) {
     document.body.appendChild(document.createElement("p")).innerHTML = "Impossible!";
@@ -71,8 +71,8 @@ function solveMap() {
 
 function drawMap() {
   ctx.fillStyle = "#ee6"; ctx.fillRect(0, 0, 200, 200);
-  for (let j = 0; j < mh; j++) {
-    for (let i = 0; i < mw; i++) {
+  for (let j: number = 0; j < mh; j++) {
+    for (let i: number = 0; i < mw; i++) {
       switch (map[i][j]) {
         case 0: continue;
         case 1: ctx.fillStyle = "#990"; break;
@@ -117,16 +117,16 @@ function createMap() {
       else map[i][j] = 0;
     }
   }
-  map[5][3] = map[6][3] = map[7][3] = map[3][4] = map[7][4] = map[3][5] =
-    map[7][5] = map[3][6] = map[4][6] = map[5][6] = map[6][6] = map[7][6] = 1;
-  //map[start.x][start.y] = 2; map[goal.x][goal.y] = 3;
+  map[3][3] = map[4][3] = map[5][3] = map[6][8] = map[8][6] = map[3][5] =
+    map[7][5] = map[2][1] = map[4][6] = map[5][6] = map[6][6] = map[7][6] = 1;
+  map[start.x][start.y] = 2; map[goal.x][goal.y] = 3;
 }
 
 function init() {
 
-  canvas.width = canvas.height = 200;
+
   ctx.scale(20, 20);
-  document.body.appendChild(canvas);
+
   neighbours = [
     { x: 1, y: 0, c: 1 }, { x: -1, y: 0, c: 1 }, { x: 0, y: 1, c: 1 }, { x: 0, y: -1, c: 1 },
     { x: 1, y: 1, c: 1.4 }, { x: 1, y: -1, c: 1.4 }, { x: -1, y: 1, c: 1.4 }, { x: -1, y: -1, c: 1.4 }
@@ -134,6 +134,38 @@ function init() {
   pathArray = []; createMap(); openList.push(start); solveMap();
 }
 
-const button = document.querySelector('button');
+const button = document.querySelector('#route');
 button.addEventListener('click', init);
 
+
+/*
+//----------------------------------------------------------------------------------------------------------//
+// Fun button animation
+*/
+let angle = 0;
+ 
+function drawCircle() {
+   
+     
+    // color in the background
+    ctx.fillStyle = "#EEEEEE";
+    ctx.fillRect(0, 0, 600, 600);
+     
+    // draw the circle
+    ctx.beginPath();
+     
+    let radius = 25 + 150 * Math.abs(Math.cos(angle));
+    ctx.arc(225, 225, radius, 0, Math.PI * 2, false);
+    ctx.closePath();
+     
+    // color in the circle
+    ctx.fillStyle = "#006699";
+    ctx.fill();
+      
+    angle += Math.PI / 64;
+     
+    requestAnimationFrame(drawCircle);
+}
+
+const fun = document.querySelector('#fun');
+fun.addEventListener('click', drawCircle);
