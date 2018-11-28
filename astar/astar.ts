@@ -7,9 +7,9 @@ let map: number[] = [];
 let openList: number[] = []; 
 let closedList: number[] = []; 
 let start: { x: number; y: number; f: number, g: number} = { x: 1, y: 1, f: 0, g: 0 };
-let goal: { x: number; y: number; f: number, g: number} = { x: 8, y: 8, f: 0, g: 0 };
-let mw: number = 10;
-let mh: number = 10; 
+let goal: { x: number; y: number; f: number, g: number} = { x: 18, y: 18, f: 0, g: 0 };
+let mapWidth: number = 20;
+let mapHeight: number = 20; 
 let neighbours: object[] = []; 
 let pathArray: object[] = [];
 
@@ -70,28 +70,29 @@ function solveMap(): any {
 
 
 function drawMap() {
-  ctx.fillStyle = "#ee6"; ctx.fillRect(0, 0, 200, 200);
-  for (let j: number = 0; j < mh; j++) {
-    for (let i: number = 0; i < mw; i++) {
+  ctx.fillStyle = "lightgrey"; 
+  ctx.fillRect(0, 0, 100, 100);
+  for (let j: number = 0; j < mapHeight; j++) {
+    for (let i: number = 0; i < mapWidth; i++) {
       switch (map[i][j]) {
         case 0: continue;
-        case 1: ctx.fillStyle = "#990"; break;
-        case 2: ctx.fillStyle = "#090"; break;
-        case 3: ctx.fillStyle = "#900"; break;
+        case 1: ctx.fillStyle = "pink"; break;
+        case 2: ctx.fillStyle = "#green"; break;
+        case 3: ctx.fillStyle = "#blue"; break;
       }
       ctx.fillRect(i, j, 1, 1);
     }
   }
   let a;
   if (pathArray.length) {
-    let txt = "Path: " + (pathArray.length - 1) + "<br />[";
+    let pathText = "Path: " + (pathArray.length - 1) + "<br />[";
     for (let i = pathArray.length - 1; i > -1; i--) {
       a = pathArray[i];
-      ctx.fillStyle = "#999";
+      ctx.fillStyle = "maroon";
       ctx.fillRect(a.x, a.y, 1, 1);
-      txt += "(" + a.x + ", " + a.y + ") ";
+      pathText += "(" + a.x + ", " + a.y + ") ";
     }
-    document.body.appendChild(document.createElement("p")).innerHTML = txt + "]";
+    document.body.appendChild(document.createElement("p")).innerHTML = pathText + "]";
     return;
   }
 
@@ -109,16 +110,17 @@ function drawMap() {
 }
 
 function createMap() {
-  map = new Array(mw);
-  for (let i = 0; i < mw; i++) {
-    map[i] = new Array(mh);
-    for (let j = 0; j < mh; j++) {
-      if (!i || !j || i == mw - 1 || j == mh - 1) map[i][j] = 1;
+  map = new Array(mapWidth);
+  for (let i = 0; i < mapWidth; i++) {
+    map[i] = new Array(mapHeight);
+    for (let j = 0; j < mapHeight; j++) {
+      if (!i || !j || i == mapWidth - 1 || j == mapHeight - 1) map[i][j] = 1;
       else map[i][j] = 0;
     }
   }
   map[3][3] = map[4][3] = map[5][3] = map[6][8] = map[8][6] = map[3][5] =
-    map[7][5] = map[2][1] = map[4][6] = map[5][6] = map[6][6] = map[7][6] = 1;
+    map[7][5] = map[2][1] = map[4][6] = map[5][6] = map[12][12] = map[11][11] = map[10][11] = map[11][10] = 1;
+
   map[start.x][start.y] = 2; map[goal.x][goal.y] = 3;
 }
 
